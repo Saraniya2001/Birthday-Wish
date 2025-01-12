@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Scratch Card</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Open+Sans|Pacifico|Indie+Flower|Great+Vibes" rel="stylesheet">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Emoji.CSS -->
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- scrollReveal.js -->
+  <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align:center;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      background-image: url(img/photos/bg5.jpg);
+      height: 100vh;
+    }
+
+    h1 {
+      color:black;
+      margin-top: 20px;
+    }
+
+    .container {
+      margin-top: 20px;
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hidden-message {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      line-height: 1.5;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    .scratch-card {
+      width: 300px;
+      height: 200px;
+      background: gray;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      position: relative;
+      justify-content: center;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 10px;
+      z-index: 2;
+    }
+
+    .quiz-container {
+            background: #9e41cd;
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #ed40a5;
+            color: white;
+            transition: transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #ed40a5;
+        }
+        .no-button {
+            position:relative;
+        }
+  </style>
+</head>
+<body>
+
+  <section>
+    <div class="quiz-container">
+      <div class="question">Hey, Do you love me?</div>
+      <div class="buttons">
+          <button id="yes-button">Yes</button>
+          <button id="no-button" class="no-button">No</button>
+      </div>
+  </div>
+  </section>
+
+  <section>
+  <h1>Happy Birthday, My Love! 💖</h1>
+  <p>Scratch the card to reveal the message</p>
+
+  <div class="container">
+    <div class="scratch-card">
+      <div class="hidden-message">🎉 Shall we go for a trip? </div>
+      <canvas></canvas>
+    </div>
+  </div>
+</section>
+
+  
+
+  <script>
+    // Setup canvas and context
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    const scratchCard = document.querySelector(".scratch-card");
+
+    // Set canvas size to match the scratch card
+    canvas.width = scratchCard.offsetWidth;
+    canvas.height = scratchCard.offsetHeight;
+
+    // Fill canvas with gray overlay
+    ctx.fillStyle = "gray";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Mouse event variables
+    let isScratching = false;
+
+    // Start scratching
+    canvas.addEventListener("mousedown", () => (isScratching = true));
+    canvas.addEventListener("mouseup", () => (isScratching = false));
+    canvas.addEventListener("mouseout", () => (isScratching = false));
+
+    // Scratch effect
+    canvas.addEventListener("mousemove", (event) => {
+      if (!isScratching) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.beginPath();
+      ctx.arc(x, y, 20, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Optional: Reset canvas when fully scratched
+    const checkScratchPercentage = () => {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      let clearedPixels = 0;
+
+      for (let i = 0; i < imageData.data.length; i += 4) {
+        if (imageData.data[i + 3] === 0) clearedPixels++; // Alpha channel
+      }
+
+      const clearedPercentage = (clearedPixels / (canvas.width * canvas.height)) * 100;
+      if (clearedPercentage > 60) {
+        canvas.style.display = "none"; // Hide canvas
+      }
+    };
+
+    canvas.addEventListener("mousemove", checkScratchPercentage);
+
+
+    const yesButton = document.getElementById('yes-button');
+        const noButton = document.getElementById('no-button');
+
+        yesButton.addEventListener('click', () => {
+            alert('I love you too!');
+        });
+
+        noButton.addEventListener('mouseover', () => {
+            const container = document.querySelector('.quiz-container');
+            const containerRect = container.getBoundingClientRect();
+
+            const x = Math.random() * (window.innerWidth - containerRect.width);
+            const y = Math.random() * (window.innerHeight - containerRect.height);
+
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+  </script>
+
+<audio id="backgroundMusic" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
+<footer class="page-footer font-small blue pt-2 mt-2">
+    <!-- Navigation Bar -->
+
+    <div class="hero">
+     <div class="hero-content">
+       <p>Click on the hearts below to explore your surprises!</p>
+       <div class="heart-buttons">
+        <a href="index.html" class="heart-button">L</a>
+         <a href="photoBooth.html" class="heart-button">O</a>
+         <a href="memory-lane.html" class="heart-button">V</a>
+         <a href="song.html" class="heart-button">E</a>
+         <a href="wishes.html" class="heart-button">Y</a>
+         <a href="scrachcard.html" class="heart-button">O</a>
+         <a href="gift-reveal.html" class="heart-button">U</a>
+       </div>
+     </div>
+   </div>
+   <div class="container-fluid text-center text-md-left">
+     <h3 style="color: #fff; overflow-y: hidden; font-family: 'Great Vibes', cursive;"> Made With <span><i class="em em-heartpulse"></i></span><br> by Sarani.</h3>
+   </div>
+ </footer>
+</body>
+</html>

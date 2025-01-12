@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Gift</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #fbc2eb, #a18cd1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      background-image: url(img/photos/vintage.webp);
+    }
+
+    h2 {
+      font-size: 3rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .button {
+      margin-top: 2rem;
+      display: inline-block;
+      background: #6c5cd3;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .button:hover {
+      background: #421882;
+      transform: scale(1.1);
+    }
+
+    /* Popup Styles */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 80%;
+      max-width: 400px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      z-index: 1000;
+    }
+
+    .popup.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .video-container video {
+      width: 50%;
+      border-radius: 10px;
+    }
+
+    .video-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-align: center;
+      display: none;
+    }
+
+    .popup .close {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #6c5cd3;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .popup .close:hover {
+      background: #421882;
+    }
+
+    .back-button {
+      margin-top: 2rem;
+      display: inline-block;
+      background:  #6c5cd3;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: #421882;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h2>Your Gift</h2>
+    <p>Click the button below to reveal your special gift! 🎁✨</p>
+    <button class="button" onclick="showPopup()">Click to Get It</button>
+    <a href="index.html" class="back-button">Back to Home</a>
+  </div>
+
+  <!-- Popup Structure -->
+  <div class="popup" id="popup">
+    <div class="video-container">
+      <video id="popupVideo" controls>
+        <source src="img/photos/gift.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <!-- Message Overlay -->
+      <div id="videoMessage" class="video-message">I'm the Special Gift!😜</div>
+    </div>
+    <button class="close" onclick="closePopup()">Close</button>
+  </div>
+
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
+  <script>
+    // Show Popup and Video
+    function showPopup() {
+      const popup = document.getElementById("popup");
+      const video = document.getElementById("popupVideo");
+      const videoMessage = document.getElementById("videoMessage");
+
+      popup.classList.add("active");
+
+      // Show the message as soon as the popup is shown
+      videoMessage.style.display = "block";
+
+      // Automatically hide the message after 3 seconds
+      setTimeout(() => {
+        videoMessage.style.display = "none";
+      }, 3000); // 3 seconds
+    }
+
+    // Close Popup
+    function closePopup() {
+      const popup = document.getElementById("popup");
+      const video = document.getElementById("popupVideo");
+
+      popup.classList.remove("active");
+      video.pause(); // Pause the video when closing the popup
+    }
+  </script>
+</body>
+</html>

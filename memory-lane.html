@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Scrapbook</title>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Open+Sans|Pacifico|Indie+Flower|Great+Vibes" rel="stylesheet">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Emoji.CSS -->
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+  <!-- scrollReveal.js -->
+  <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-image:url(img/photos/bg5.jpg);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 20px;
+      color:black;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    /* Scrapbook Styles */
+    .scrapbook-container {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 0 10%;
+    }
+
+    .scrapbook-page {
+      background-color: #fff;
+      border: 2px solid #f0a5c9;
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .scrapbook-page:hover {
+      transform: scale(1.05);
+    }
+
+    .scrapbook-title {
+      font-size: 24px;
+      color: #ff007f;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .message {
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+
+    .doodle {
+      font-size: 30px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .scrapbook-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .scrapbook-page {
+        width: 80%;
+      }
+    }
+
+    .floating-heart {
+    position: absolute;
+    bottom: 0;
+    animation: floatUp 5s ease-in-out infinite;
+    color: rgba(255, 51, 102, 0.8);
+  }
+  
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+  }
+  
+  </style>
+</head>
+<body>
+  <section>
+    <h1>Happy Birthday, My Love! 💖</h1>
+    <p>A little scrapbook to celebrate our memories together!</p>
+    
+    <div class="scrapbook-container">
+      <!-- Page 1 -->
+      <div class="scrapbook-page">
+        <div class="scrapbook-title">Page 1: A Special Memory</div>
+        <p class="message">"Remember the time we take our first pic? That day was magical, just like you. 💕"</p>
+        <img src="img/photos/Love/img1.jpg" alt="Memory Image">
+      </div>
+      
+      <!-- Page 2 -->
+      <div class="scrapbook-page">
+        <div class="scrapbook-title">Page 2: A Note from My Heart</div>
+        <p class="message">"I wish this year will be awesome. My heart felt wishes to you🌟"</p>
+        <span class="doodle">🌸✨💌</span>
+      </div>
+      
+      <!-- Page 3 -->
+      <div class="scrapbook-page">
+        <div class="scrapbook-title">Page 3: A Fun Doodle</div>
+        <p class="message">"Give me the special treat 🌈"</p>
+        <span class="doodle">💫💖🎉</span>
+      </div>
+
+      <!-- Page 4 -->
+      <div class="scrapbook-page">
+        <div class="scrapbook-title">Page 4: A Message for the Future</div>
+        <p class="message">"Let's make our life in loveable way🥂"</p>
+        <img src="img/photos/Love/img4.jpg" alt="Future Dreams">
+      </div>
+    </div>
+  </section>
+
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
+  <footer class="page-footer font-small blue pt-2 mt-2">
+    <!-- Navigation Bar -->
+
+    <div class="hero">
+     <div class="hero-content">
+       <p>Click on the hearts below to explore your surprises!</p>
+       <div class="heart-buttons">
+        <a href="index.html" class="heart-button">L</a>
+         <a href="photoBooth.html" class="heart-button">O</a>
+         <a href="memory-lane.html" class="heart-button">V</a>
+         <a href="song.html" class="heart-button">E</a>
+         <a href="wishes.html" class="heart-button">Y</a>
+         <a href="scrachcard.html" class="heart-button">O</a>
+         <a href="gift-reveal.html" class="heart-button">U</a>
+       </div>
+     </div>
+   </div>
+   <div class="container-fluid text-center text-md-left">
+     <h3 style="color: #fff; overflow-y: hidden; font-family: 'Great Vibes', cursive;"> Made With <span><i class="em em-heartpulse"></i></span><br> by Sarani.</h3>
+   </div>
+ </footer>
+
+ <script src="main.js">
+
+    chat = document.getElementsByClassName('col-lg-12');
+
+    console.log(chat);
+
+
+    </script>
+
+</body>
+</html>

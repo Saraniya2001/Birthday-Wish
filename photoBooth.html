@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <title>HAPPY BIRTHDAY!</title>
+
+   <!-- Fonts -->
+   <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Open+Sans|Pacifico|Indie+Flower|Great+Vibes" rel="stylesheet">
+
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+   <!-- Emoji.CSS -->
+   <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="style.css">
+
+   <!-- scrollReveal.js -->
+   <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+
+  <title>Photo Booth Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      overflow-x: hidden;
+      background-image: url(img/photos/backgroung/rose.jpg)
+    }
+
+    P{
+      color: #000;
+      text-decoration: bold;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .album {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .photo {
+      position: relative;
+      width: 200px;
+      height: 240px;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      transform: rotate(-2deg);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .photo:hover {
+      transform: rotate(0deg) scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .photo img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .caption {
+      padding: 10px;
+      font-size: 1em;
+      color: #000;
+    }
+
+    .polaroid-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 5px solid black;
+      box-sizing: border-box;
+    }
+
+    .flip-button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #9e41cd;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .flip-button:hover {
+      background-color: #a026b8;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Just Remember the Moments!</h1>
+    <p>Small collection of our most loving memories!</p>
+
+    <div class="album" id="album-page-1">
+      <div class="photo">
+        <div class="polaroid-frame"></div>
+        <img src="img/photos/Love/img1.jpg" alt="Memory 1">
+        <div class="caption">Memory 1</div>
+      </div>
+      <div class="photo">
+        <div class="polaroid-frame"></div>
+        <img src="img/photos/Love/img2.jpg" alt="Memory 2">
+        <div class="caption">Memory 2</div>
+      </div>
+      <div class="photo">
+        <div class="polaroid-frame"></div>
+        <img src="img/photos/Love/img3.jpg" alt="Memory 3">
+        <div class="caption">Memory 3</div>
+      </div>
+      <div class="photo">
+        <div class="polaroid-frame"></div>
+        <img src="img/photos/Love/img7.jpg" alt="Memory 3">
+        <div class="caption">Memory 4</div>
+      </div>
+    </div>
+
+    <div class="album hidden" id="album-page-2">
+      <div class="photo">
+        <div class="polaroid-frame"></div>
+        <img src="img/photos/Love/img4.jpg" alt="Memory 4">
+        <div class="caption">Memory 5</div>
+      </div>
+      <div class="photo">
+        <div class="polaroid-frame"></div>
+        <img src="img/photos/Love/img5.jpg" alt="Memory 5">
+        <div class="caption">Memory 6</div>
+      </div>
+      <div class="photo">
+        <div class="polaroid-frame"></div>
+        <img src="img/photos/Love/img6.jpg" alt="Memory 6">
+        <div class="caption">Memory 7</div>
+      </div>
+      <div class="photo">
+        <div class="polaroid-frame"></div>
+        <img src="img/photos/Love/img8.jpg" alt="Memory 8">
+        <div class="caption">Memory 8</div>
+      </div>
+    </div>
+
+    <button class="flip-button" onclick="flipPage()">Next Page</button>
+  </div>
+
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
+  <footer class="page-footer font-small blue pt-2 mt-2">
+    <!-- Navigation Bar -->
+
+    <div class="hero">
+     <div class="hero-content">
+       <p>Click on the hearts below to explore your surprises!</p>
+       <div class="heart-buttons">
+         <a href="index.html" class="heart-button">L</a>
+         <a href="photoBooth.html" class="heart-button">O</a>
+         <a href="memory-lane.html" class="heart-button">V</a>
+         <a href="song.html" class="heart-button">E</a>
+         <a href="wishes.html" class="heart-button">Y</a>
+         <a href="scrachcard.html" class="heart-button">O</a>
+         <a href="gift-reveal.html" class="heart-button">U</a>
+       </div>
+     </div>
+   </div>
+   <div class="container-fluid text-center text-md-left">
+     <h3 style="color: #fff; overflow-y: hidden; font-family: 'Great Vibes', cursive;"> Made With <span><i class="em em-heartpulse"></i></span><br> by Sarani.</h3>
+   </div>
+ </footer>
+
+  <script>
+    let currentPage = 1;
+
+    function flipPage() {
+      const currentAlbum = document.getElementById(`album-page-${currentPage}`);
+      const nextPage = currentPage === 1 ? 2 : 1;
+      const nextAlbum = document.getElementById(`album-page-${nextPage}`);
+
+      currentAlbum.classList.add('hidden');
+      nextAlbum.classList.remove('hidden');
+
+      currentPage = nextPage;
+    }
+  </script>
+</body>
+</html>
